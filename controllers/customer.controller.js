@@ -63,12 +63,10 @@ const customerController = {
     } else {
       let cnt = 0;
       while (cnt != numTickets) {
-        // console.log(available[cnt]._id);
         await ticket.updateOne(
           { _id: available[cnt]._id },
           { booked: true, customer: cust._id }
         );
-        // console.log(cust._id);
         await customer.updateOne(
           { _id: cust._id },
           { $push: { tickets: available[cnt] } }
