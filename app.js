@@ -24,7 +24,7 @@ mongoose
   .then(() => {
     console.log("Database Connected");
     cron.schedule("* * * * *", autodelete.run);
-    cron.schedule("* * * * *", autoexpire.run);
+    cron.schedule("0 * * * *", autoexpire.run);
   })
   .catch((err) => {
     console.log(err);
