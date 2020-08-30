@@ -8,6 +8,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("Welcome to Ticket Booking API !");
+});
+
 mongoose
   .connect(process.env.DB_CONNECTION, {
     useNewUrlParser: true,
@@ -19,6 +23,12 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+
+const ticketRoute = require("./routes/ticket.route");
+const customerRoute = require("./routes/customer.route");
+
+app.use("/ticket", ticketRoute);
+app.use("/customer", customerRoute);
 
 const port = 3000 || process.env.PORT;
 app.listen(port, () => {
