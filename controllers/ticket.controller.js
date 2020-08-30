@@ -8,6 +8,9 @@ const ticketController = {
   },
 
   forTime: async (req, res) => {
+  	if(req.params.time == undefined){
+  		res.status(400).json({err: "Provide a time field"});
+  	}
     const tickets = await ticket.find({ time: req.params.time });
     if (parseInt(tickets.length) == 0) {
       res.status(404).json({ err: "No tickets found for that time." });
@@ -17,6 +20,9 @@ const ticketController = {
   },
 
   add: async (req, res) => {
+  	if(req.body.time == undefined){
+  		res.status(400).json({err: "Provide a time field"});
+  	}
     const tickets = await ticket.find({ time: req.body.time });
     if (parseInt(tickets.length) >= 20) {
       res.status(400).json({
@@ -32,6 +38,9 @@ const ticketController = {
   },
 
   updateTime: async (req, res) => {
+  	if(req.body.time == undefined || req.body.id == undefined || req.body.id.length != 24){
+  		res.status(400).json({err: "Provide correct fields"});
+  	}
     const newTime = req.body.newTime;
     const found = await ticket.findOne({ _id: req.body.id });
     if (found == null) {
@@ -45,6 +54,9 @@ const ticketController = {
   },
 
   delete: async (req, res) => {
+  	if(req.body.time == undefined){
+  		res.status(400).json({err: "Provide a proper id"});
+  	}
     const found = await ticket.findOne({ _id: req.body.id });
     if (found == null) {
       res.status(404).json({ err: "No ticket with that ID exists." });
@@ -64,6 +76,9 @@ const ticketController = {
   },
 
   getCustomer: async (req, res) => {
+  	if(req.params.id == undefined || req.params.id.length != 24){
+  		res.status(400).json({err: "Provide a proper id"});
+  	}
     const found = await ticket.findOne({ _id: req.params.id });
     if (found == null) {
       res.status(404).json({ err: "No ticket with that ID exists." });
