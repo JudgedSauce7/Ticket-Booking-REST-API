@@ -17,6 +17,7 @@ const customerSchema = new Schema(
     tickets: {
       type: [ObjectId],
       ref: "Ticket",
+      default: undefined,
     },
   },
   { timestamps: true }

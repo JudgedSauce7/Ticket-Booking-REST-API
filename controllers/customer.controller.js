@@ -31,12 +31,12 @@ const customerController = {
       });
       cust = await newCust.save();
     }
-    console.log(cust);
+    // console.log(cust);
     const id = cust._id;
     const numTickets = req.body.numTickets;
     const available = await ticket.find({ time: req.body.time, booked: false });
     const numAvailable = available.length;
-    console.log(available);
+    // console.log(available);
     if (numAvailable == 0) {
       res.json({ error: "No tickets available for this time slot" });
     } else if (numAvailable < numTickets) {
@@ -44,20 +44,19 @@ const customerController = {
     } else {
       let cnt = 0;
       while (cnt != numTickets) {
-        console.log(available[cnt]._id);
-        await ticket.updateOne({
-          _id: available[cnt]._id,
-          booked: true,
-          customer: cust._id,
-        });
-        console.log(cust._id);
+        // console.log(available[cnt]._id);
+        await ticket.updateOne(
+          { _id: available[cnt]._id },
+          { booked: true, customer: cust._id }
+        );
+        // console.log(cust._id);
         await customer.updateOne(
           { _id: cust._id },
           { $push: { tickets: available[cnt] } }
         );
         cnt = cnt + 1;
       }
-      res.json("Booking Done");
+      res.json({ success: `${numTickets} booked successfully !` });
     }
   },
 };
