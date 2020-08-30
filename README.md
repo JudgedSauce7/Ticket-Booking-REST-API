@@ -42,7 +42,7 @@ Has ticket and customer routes.
   **Data Params :** None
   **Success Response :** `Status 200`
 
-  ```json
+  ```
   [
       {
           "_id" : ObjectId,
@@ -63,7 +63,7 @@ Has ticket and customer routes.
   **Data Params :** None
   **Success Response :** `Status 200`
 
-  ```json
+  ```
   [
       {
           "_id" : ObjectId,
@@ -91,7 +91,7 @@ Has ticket and customer routes.
   **URL Params :** None
   **Data Params :** time
 
-  ```json
+  ```
   {
     "time": "YYYY-MM-DDTHH:MM" //Required
   }
@@ -120,7 +120,7 @@ Has ticket and customer routes.
   **URL Params :** None
   **Data Params :** `id` `time`
 
-  ```json
+  ```
   {
     "id": ObjectID, //Required
     "time": "YYYY-MM-DDTHH:MM" // Required
@@ -150,7 +150,7 @@ Has ticket and customer routes.
   **URL Params :** None
   **Data Params :** `id`
 
-  ```json
+  ```
   {
     "id": ObjectID // Required
   }
@@ -178,7 +178,7 @@ Has ticket and customer routes.
   **URL Params :** `id = [ObjectId]`
   **Data Params :** None
   **Success Response :** `Status 200`
-  ```json
+  ```
   {
     "_id" : ObjectId,
     "name" : String,
@@ -209,7 +209,7 @@ Has ticket and customer routes.
   **Data Params :** None
   **Success Response :** `Status 200`
 
-  ```json
+  ```
   [
       {
         "_id" : ObjectId,
@@ -228,7 +228,7 @@ Has ticket and customer routes.
   **URL Params :** None
   **Data Params :** `name` `phone` `time` `tickets`
 
-  ```json
+  ```
   {
     "name": String, //Required
     "phone": String, //Required
@@ -264,7 +264,7 @@ Has ticket and customer routes.
   **URL Params :** None
   **Data Params :** `name` `phone`
 
-  ```json
+  ```
   {
     "name": String, //Required
     "phone": String //Required
@@ -295,7 +295,7 @@ Has ticket and customer routes.
   **Data Params :** None
   **Success Response :** `Status 200`
 
-  ```json
+  ```
   {
     "id" : ObjectId,
     "name" : String,
