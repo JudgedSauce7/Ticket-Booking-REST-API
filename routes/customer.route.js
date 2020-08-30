@@ -12,6 +12,6 @@ router.post("/add", customerController.addCustomer);
 
 router.get("/:name", customerController.getCustomer);
 
-// router.post("/book", customerController.book);
+router.post("/book", customerController.book);
 
 module.exports = router;
