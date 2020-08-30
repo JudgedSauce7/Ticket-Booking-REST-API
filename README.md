@@ -29,7 +29,7 @@ $   node app.js
 ## { ... } REST API
 
 Has ticket and customer routes.<br>
-Tested using Postwoman/Hoppscotch API client. Screenshots [here]().<br>
+Tested using Postwoman/Hoppscotch API client. Screenshots [here](./screenshots).<br>
 
 ### 🎫Ticket Routes
 
