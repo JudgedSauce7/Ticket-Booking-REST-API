@@ -42,7 +42,6 @@ const ticketController = {
     } else {
       const cust = found.customer;
       if (cust != undefined) {
-        // const foundCustomer = customer.findOne({ _id: cust });
         await customer.updateOne(
           { _id: cust },
           { $pull: { tickets: found._id } }
@@ -52,6 +51,18 @@ const ticketController = {
       res.json({
         success: `Successfully deleted ticket with ID: ${req.body.id}`,
       });
+    }
+  },
+
+  getCustomer: async (req, res) => {
+    const found = await ticket.findOne({ _id: req.params.id });
+    if (found == null) {
+      res.json({ err: "No ticket with that ID exists." });
+    } else if (found.booked == false) {
+      res.json({ err: "That ticket hasn't been booked yet!" });
+    } else {
+      const cust = await customer.findOne({ _id: found.customer });
+      res.json(cust);
     }
   },
 };

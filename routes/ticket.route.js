@@ -16,4 +16,6 @@ router.put("/update/", ticketController.updateTime);
 
 router.delete("/delete", ticketController.delete);
 
+router.get("/get-customer/:id", ticketController.getCustomer);
+
 module.exports = router;
