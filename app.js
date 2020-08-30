@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Welcome to Ticket Booking API !");
+  res.json({ res: "Welcome to Ticket Booking API !" });
 });
 
 mongoose
