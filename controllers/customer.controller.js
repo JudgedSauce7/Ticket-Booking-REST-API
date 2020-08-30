@@ -9,7 +9,11 @@ const customerController = {
 
   getCustomer: async (req, res) => {
     const cust = await customer.find({ name: req.params.name });
-    res.json(cust);
+    if (cust.length == 0) {
+      res.json({ err: `No customer with name \"${req.params.name}\" exists` });
+    } else {
+      res.json(cust);
+    }
   },
 
   addCustomer: async (req, res) => {
@@ -18,8 +22,9 @@ const customerController = {
       const newCust = new customer(req.body);
       const savedCust = await newCust.save();
       res.json(savedCust);
+    } else {
+      res.json({ err: `The customer already exists` });
     }
-    res.send("Already added");
   },
 
   book: async (req, res) => {
@@ -31,14 +36,12 @@ const customerController = {
       });
       cust = await newCust.save();
     }
-    // console.log(cust);
     const id = cust._id;
-    const numTickets = req.body.numTickets;
+    const numTickets = req.body.tickets;
     const available = await ticket.find({ time: req.body.time, booked: false });
     const numAvailable = available.length;
-    // console.log(available);
     if (numAvailable == 0) {
-      res.json({ error: "No tickets available for this time slot" });
+      res.json({ error: `No tickets available for time ${req.body.time}` });
     } else if (numAvailable < numTickets) {
       res.json({ error: `Only ${numAvailable} ticket(s) are available !` });
     } else {

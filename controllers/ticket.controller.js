@@ -9,17 +9,26 @@ const ticketController = {
 
   forTime: async (req, res) => {
     const tickets = await ticket.find({ time: req.params.time });
-    if (tickets.length == 0) {
+    if (parseInt(tickets.length) == 0) {
       res.json({ err: "No tickets found for that time." });
+    } else {
+      res.json(tickets);
     }
-    res.json(tickets);
   },
 
   add: async (req, res) => {
-    const newTicket = new ticket(req.body);
-    const savedTicket = await newTicket.save();
-
-    res.send(savedTicket);
+    const tickets = await ticket.find({ time: req.body.time });
+    if (parseInt(tickets.length) >= 20) {
+      res.json({
+        err: `20 Tickets already exist for time ${req.body.time}. Cannot create more than 20 tickets.`,
+      });
+    } else {
+      const newTicket = new ticket(req.body);
+      const savedTicket = await newTicket.save();
+      res.json({
+        success: `Ticket with ID: ${savedTicket._id} created for time ${req.body.time}`,
+      });
+    }
   },
 
   updateTime: async (req, res) => {
