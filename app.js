@@ -1,7 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const cron = require("node-cron");
 require("dotenv/config");
+
+const autodelete = require("./scripts/autodelete.js");
+var autoexpire = require("./scripts/autoexpire.js");
 
 const app = express();
 
@@ -19,6 +23,8 @@ mongoose
   })
   .then(() => {
     console.log("Database Connected");
+    cron.schedule("* * * * *", autodelete.run);
+    cron.schedule("* * * * *", autoexpire.run);
   })
   .catch((err) => {
     console.log(err);
