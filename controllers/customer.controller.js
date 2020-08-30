@@ -19,7 +19,7 @@ const customerController = {
   },
 
   addCustomer: async (req, res) => {
-    const cust = await customer.find({ name: req.params.name });
+    const cust = await customer.findOne({ name: req.params.name });
     if (cust == null) {
       const newCust = new customer(req.body);
       const savedCust = await newCust.save();
@@ -65,7 +65,9 @@ const customerController = {
         );
         cnt = cnt + 1;
       }
-      res.status(200).json({ success: `${numTickets} booked successfully !` });
+      res
+        .status(200)
+        .json({ success: `${numTickets} tickets booked successfully !` });
     }
   },
 };
