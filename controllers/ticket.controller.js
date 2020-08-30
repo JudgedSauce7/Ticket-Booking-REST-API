@@ -4,28 +4,28 @@ const ticket = require("../models/ticket.model");
 const ticketController = {
   getAll: async (req, res) => {
     const all = await ticket.find();
-    res.json(all);
+    res.status(200).json(all);
   },
 
   forTime: async (req, res) => {
     const tickets = await ticket.find({ time: req.params.time });
     if (parseInt(tickets.length) == 0) {
-      res.json({ err: "No tickets found for that time." });
+      res.status(404).json({ err: "No tickets found for that time." });
     } else {
-      res.json(tickets);
+      res.status(200).json(tickets);
     }
   },
 
   add: async (req, res) => {
     const tickets = await ticket.find({ time: req.body.time });
     if (parseInt(tickets.length) >= 20) {
-      res.json({
+      res.status(400).json({
         err: `20 Tickets already exist for time ${req.body.time}. Cannot create more than 20 tickets.`,
       });
     } else {
       const newTicket = new ticket(req.body);
       const savedTicket = await newTicket.save();
-      res.json({
+      res.status(201).json({
         success: `Ticket with ID: ${savedTicket._id} created for time ${req.body.time}`,
       });
     }
@@ -35,11 +35,11 @@ const ticketController = {
     const newTime = req.body.newTime;
     const found = await ticket.findOne({ _id: req.body.id });
     if (found == null) {
-      res.json({ err: "No ticket with that ID exists." });
+      res.status(404).json({ err: "No ticket with that ID exists." });
     }
     const oldTime = found.time;
     await ticket.updateOne({ _id: req.body.id }, { time: req.body.time });
-    res.json({
+    res.status(201).json({
       success: `Successfully updated time from ${oldTime} to ${req.body.time}`,
     });
   },
@@ -47,7 +47,7 @@ const ticketController = {
   delete: async (req, res) => {
     const found = await ticket.findOne({ _id: req.body.id });
     if (found == null) {
-      res.json({ err: "No ticket with that ID exists." });
+      res.status(404).json({ err: "No ticket with that ID exists." });
     } else {
       const cust = found.customer;
       if (cust != undefined) {
@@ -57,7 +57,7 @@ const ticketController = {
         );
       }
       await ticket.deleteOne({ _id: req.body.id });
-      res.json({
+      res.status(200).json({
         success: `Successfully deleted ticket with ID: ${req.body.id}`,
       });
     }
@@ -66,12 +66,12 @@ const ticketController = {
   getCustomer: async (req, res) => {
     const found = await ticket.findOne({ _id: req.params.id });
     if (found == null) {
-      res.json({ err: "No ticket with that ID exists." });
+      res.status(404).json({ err: "No ticket with that ID exists." });
     } else if (found.booked == false) {
-      res.json({ err: "That ticket hasn't been booked yet!" });
+      res.status(400).json({ err: "That ticket hasn't been booked yet!" });
     } else {
       const cust = await customer.findOne({ _id: found.customer });
-      res.json(cust);
+      res.status(200).json(cust);
     }
   },
 };

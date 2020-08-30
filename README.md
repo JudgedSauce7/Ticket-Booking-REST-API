@@ -34,11 +34,11 @@ Has ticket and customer routes.
 
 - #### Get all available tickets for all times
 
-  **URL :** `/ticket/all`
-  **Method :** `GET`
-  **URL Params :** None
-  **Data Params :** None
-  **Success Response :** `Status 200`
+  **URL :** `/ticket/all`<br>
+  **Method :** `GET`<br>
+  **URL Params :** None<br>
+  **Data Params :** None<br>
+  **Success Response :** `Status 200`<br>
 
   ```
   [
@@ -55,11 +55,11 @@ Has ticket and customer routes.
 
 - #### Get all tickets for a particular time
 
-  **URL :** `/ticket/:time`
-  **Method :** `GET`
-  **URL Params :** `time = [YYYY-MM-DDTHH:MM]`
-  **Data Params :** None
-  **Success Response :** `Status 200`
+  **URL :** `/ticket/:time`<br>
+  **Method :** `GET`<br>
+  **URL Params :** `time = [YYYY-MM-DDTHH:MM]`<br>
+  **Data Params :** None<br>
+  **Success Response :** `Status 200`<br>
 
   ```
   [
@@ -74,7 +74,7 @@ Has ticket and customer routes.
   ]
   ```
 
-  **Error Response :** `Status 404`
+  **Error Response :** `Status 404`<br>
 
   ```json
   {
@@ -84,10 +84,10 @@ Has ticket and customer routes.
 
 - #### Add tickets for a particular time
 
-  **URL :** `/ticket/add`
-  **Method :** `POST`
-  **URL Params :** None
-  **Data Params :** time
+  **URL :** `/ticket/add`<br>
+  **Method :** `POST`<br>
+  **URL Params :** None<br>
+  **Data Params :** time<br>
 
   ```
   {
@@ -95,7 +95,7 @@ Has ticket and customer routes.
   }
   ```
 
-  **Success Response :** `Status 201`
+  **Success Response :** `Status 201`<br>
 
   ```json
   {
@@ -103,7 +103,7 @@ Has ticket and customer routes.
   }
   ```
 
-  **Error Response :** `Status 400`
+  **Error Response :** `Status 400`<br>
 
   ```json
   {
@@ -113,10 +113,10 @@ Has ticket and customer routes.
 
 - #### Update timing for a particular ticket
 
-  **URL :** `/ticket/update`
-  **Method :** `PUT`
-  **URL Params :** None
-  **Data Params :** `id` `time`
+  **URL :** `/ticket/update`<br>
+  **Method :** `PUT`<br>
+  **URL Params :** None<br>
+  **Data Params :** `id` `time`<br>
 
   ```
   {
@@ -125,7 +125,7 @@ Has ticket and customer routes.
   }
   ```
 
-  **Success Response :** `Status 201`
+  **Success Response :** `Status 201`<br>
 
   ```json
   {
@@ -133,7 +133,7 @@ Has ticket and customer routes.
   }
   ```
 
-  **Error Response :** `Status 404`
+  **Error Response :** `Status 404`<br>
 
   ```json
   {
@@ -143,10 +143,10 @@ Has ticket and customer routes.
 
 - #### Delete a particular ticket
 
-  **URL :** `/ticket/delete`
-  **Method :** `DELETE`
-  **URL Params :** None
-  **Data Params :** `id`
+  **URL :** `/ticket/delete`<br>
+  **Method :** `DELETE`<br>
+  **URL Params :** None<br>
+  **Data Params :** `id`<br>
 
   ```
   {
@@ -154,7 +154,7 @@ Has ticket and customer routes.
   }
   ```
 
-  **Success Response :** `Status 200`
+  **Success Response :** `Status 200`<br>
 
   ```json
   {
@@ -162,7 +162,7 @@ Has ticket and customer routes.
   }
   ```
 
-  **Error Response :** `Status 404`
+  **Error Response :** `Status 404`<br>
 
   ```json
   {
@@ -171,11 +171,11 @@ Has ticket and customer routes.
   ```
 
 - #### Get customer details for a particular ticket (if booked)
-  **URL :** `/ticket/get-customer/:id`
-  **Method :** `GET`
-  **URL Params :** `id = [ObjectId]`
-  **Data Params :** None
-  **Success Response :** `Status 200`
+  **URL :** `/ticket/get-customer/:id`<br>
+  **Method :** `GET`<br>
+  **URL Params :** `id = [ObjectId]`<br>
+  **Data Params :** None<br>
+  **Success Response :** `Status 200`<br>
   ```
   {
     "_id" : ObjectId,
@@ -184,12 +184,14 @@ Has ticket and customer routes.
     "tickets" : [...]
   }
   ```
-  **Error Response :** `Status 404`
+  **Error Response :** `Status 404`<br>
   ```json
   {
     "err": "No ticket with that ID exists"
   }
-        OR
+  ```
+  OR `Status 400`
+  ```json
   {
     "err": "That ticket hasn't been booked yet"
   }
@@ -201,11 +203,11 @@ Has ticket and customer routes.
 
 - #### Get all customers in the database along with their booked tickets
 
-  **URL :** `/customer/all`
-  **Method :** `GET`
-  **URL Params :** None
-  **Data Params :** None
-  **Success Response :** `Status 200`
+  **URL :** `/customer/all`<br>
+  **Method :** `GET`<br>
+  **URL Params :** None<br>
+  **Data Params :** None<br>
+  **Success Response :** `Status 200`<br>
 
   ```
   [
@@ -221,10 +223,10 @@ Has ticket and customer routes.
 
 - #### Book tickets for a customer
 
-  **URL :** `/customer/book`
-  **Method :** `POST`
-  **URL Params :** None
-  **Data Params :** `name` `phone` `time` `tickets`
+  **URL :** `/customer/book`<br>
+  **Method :** `POST`<br>
+  **URL Params :** None<br>
+  **Data Params :** `name` `phone` `time` `tickets`<br>
 
   ```
   {
@@ -235,7 +237,7 @@ Has ticket and customer routes.
   }
   ```
 
-  **Success Response :** `Status 200`
+  **Success Response :** `Status 200`<br>
 
   ```json
   {
@@ -243,7 +245,7 @@ Has ticket and customer routes.
   }
   ```
 
-  **Error Response :** `Status 401`
+  **Error Response :** `Status 401`<br>
 
   ```json
   {
@@ -257,10 +259,10 @@ Has ticket and customer routes.
 
 - #### Add a new cutomer to the database.
 
-  **URL :** `/customer/add`
-  **Method :** `POST`
-  **URL Params :** None
-  **Data Params :** `name` `phone`
+  **URL :** `/customer/add`<br>
+  **Method :** `POST`<br>
+  **URL Params :** None<br>
+  **Data Params :** `name` `phone`<br>
 
   ```
   {
@@ -269,7 +271,7 @@ Has ticket and customer routes.
   }
   ```
 
-  **Success Response :** `Status 200`
+  **Success Response :** `Status 200`<br>
 
   ```json
   {
@@ -277,7 +279,7 @@ Has ticket and customer routes.
   }
   ```
 
-  **Error Response :** `Status 400`
+  **Error Response :** `Status 400`<br>
 
   ```json
   {
@@ -287,11 +289,11 @@ Has ticket and customer routes.
 
 - #### Fetch details for a given customer.
 
-  **URL :** `/customer/:name`
-  **Method :** `GET`
-  **URL Params :** `name = [String]`
-  **Data Params :** None
-  **Success Response :** `Status 200`
+  **URL :** `/customer/:name`<br>
+  **Method :** `GET`<br>
+  **URL Params :** `name = [String]`<br>
+  **Data Params :** None<br>
+  **Success Response :** `Status 200`<br>
 
   ```
   {
@@ -302,7 +304,7 @@ Has ticket and customer routes.
   }
   ```
 
-  **Error Response :** `Status 400`
+  **Error Response :** `Status 404`<br>
 
   ```json
   {
@@ -312,7 +314,7 @@ Has ticket and customer routes.
 
 ---
 
-## 💾 Auto-running Scripts
+## 💾 Auto-running Scripts - cron jobs
 
 - #### Auto-expire
 

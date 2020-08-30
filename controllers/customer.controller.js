@@ -4,13 +4,15 @@ const ticket = require("../models/ticket.model");
 const customerController = {
   getAll: async (req, res) => {
     const all = await customer.find();
-    res.json(all);
+    res.status(200).json(all);
   },
 
   getCustomer: async (req, res) => {
     const cust = await customer.find({ name: req.params.name });
     if (cust.length == 0) {
-      res.json({ err: `No customer with name \"${req.params.name}\" exists` });
+      res
+        .status(404)
+        .json({ err: `No customer with name \"${req.params.name}\" exists` });
     } else {
       res.json(cust);
     }
@@ -21,9 +23,9 @@ const customerController = {
     if (cust == null) {
       const newCust = new customer(req.body);
       const savedCust = await newCust.save();
-      res.json(savedCust);
+      res.status(200).json(savedCust);
     } else {
-      res.json({ err: `The customer already exists` });
+      res.status(400).json({ err: `The customer already exists` });
     }
   },
 
@@ -41,9 +43,13 @@ const customerController = {
     const available = await ticket.find({ time: req.body.time, booked: false });
     const numAvailable = available.length;
     if (numAvailable == 0) {
-      res.json({ error: `No tickets available for time ${req.body.time}` });
+      res
+        .status(401)
+        .json({ error: `No tickets available for time ${req.body.time}` });
     } else if (numAvailable < numTickets) {
-      res.json({ error: `Only ${numAvailable} ticket(s) are available !` });
+      res
+        .status(401)
+        .json({ error: `Only ${numAvailable} ticket(s) are available !` });
     } else {
       let cnt = 0;
       while (cnt != numTickets) {
@@ -59,7 +65,7 @@ const customerController = {
         );
         cnt = cnt + 1;
       }
-      res.json({ success: `${numTickets} booked successfully !` });
+      res.status(200).json({ success: `${numTickets} booked successfully !` });
     }
   },
 };
