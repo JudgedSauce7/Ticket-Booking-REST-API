@@ -1,7 +1,5 @@
 # 🎬 Movie Ticket Booking API
 
----
-
 Ticket Booking REST API made using Node.js, Express and MongoDB.
 
 ### 📦 Dependencies
