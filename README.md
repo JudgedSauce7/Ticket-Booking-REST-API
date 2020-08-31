@@ -22,14 +22,25 @@ mockgoose
 $   npm i
 ```
 
-### 💨 Run
+### 🚀 Run
 
 ```bash
 $   node app.js
 ```
+---
+## 🚨 Unit Testing
+Unit testing has been done on the individual routes using `mocha`, an extensive javascript testing for Node.js, paired with `chai`, an assertion library.
 
 ---
+## 💾 Auto-running Scripts - cron jobs
 
+- #### Auto-expire
+
+  `Marks tickets as expired if there is a difference of 8 hours between ticket time and current time. Runs every minute asynchronously.`
+
+- #### Auto-delete
+  `Deletes tickets from the database if they are expired. Runs every hour asynchronously.`
+---
 ## { ... } REST API
 
 Has ticket and customer routes.<br>
@@ -319,11 +330,3 @@ Tested using Postwoman/Hoppscotch API client. Screenshots [here](./screenshots).
 
 ---
 
-## 💾 Auto-running Scripts - cron jobs
-
-- #### Auto-expire
-
-  `Marks tickets as expired if there is a difference of 8 hours between ticket time and current time. Runs every minute asynchronously.`
-
-- #### Auto-delete
-  `Deletes tickets from the database if they are expired. Runs every hour asynchronously.`
