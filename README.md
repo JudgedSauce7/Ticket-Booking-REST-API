@@ -10,6 +10,10 @@ mongoose
 cors
 node-cron
 dotenv
+chai
+mocha
+supertest
+mockgoose
 ```
 
 ### 🔰 Install

@@ -3,7 +3,7 @@ const router = express.Router();
 const customerController = require("../controllers/customer.controller");
 
 router.get("/", (req, res) => {
-  res.send("Customer Route");
+  res.json({ success: "Welcome to Customer Route" });
 });
 
 router.get("/all", customerController.getAll);
