@@ -31,6 +31,10 @@ $   node app.js
 ## 🚨 Unit Testing
 Unit testing has been done on the individual routes using `mocha`, an extensive javascript testing for Node.js, paired with `chai`, an assertion library.
 
+```bash
+$   npm run test
+```
+
 ---
 ## 💾 Auto-running Scripts - cron jobs
 
@@ -330,3 +334,4 @@ Tested using Postwoman/Hoppscotch API client. Screenshots [here](./screenshots).
 
 ---
 
+**P.S.** This was the problem statement of **Zomentum Hiring Assignment**. Thanks for making me do this. Learnt a lot!
