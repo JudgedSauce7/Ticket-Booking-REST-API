@@ -3,7 +3,7 @@ const router = express.Router();
 const ticketController = require("../controllers/ticket.controller");
 
 router.get("/", (req, res) => {
-  res.send("Ticket Route");
+  res.json({ success: "Welcome to the Ticket Route" });
 });
 
 router.get("/all", ticketController.getAll);
